@@ -1,0 +1,12 @@
+FROM consensys/teku:latest
+
+USER root
+
+# Create necessary directories with correct permissions
+RUN mkdir -p /opt/teku/data/logs && \
+    chown -R teku:teku /opt/teku/data
+
+USER teku
+
+ENTRYPOINT ["teku"]
+CMD ["--network=holesky", "--data-path=/opt/teku/data", "--eth1-endpoints=http://nethermind:8545", "--metrics-enabled=true", "--metrics-port=8008", "--rest-api-enabled=true", "--rest-api-docs-enabled=true", "--rest-api-interface=0.0.0.0", "--rest-api-port=5051", "--ee-endpoint=http://nethermind:8551", "--ee-jwt-secret-file=/data/jwtsecret"]

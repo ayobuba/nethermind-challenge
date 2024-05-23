@@ -6,6 +6,7 @@ services:
     container_name: nethermind
     volumes:
       - ./nethermind.config.json:/home/nethermind/.nethermind/config.json
+      - ./jwtsecret:/data/jwtsecret
       - nethermind_data:/data
     ports:
       - "8545:8545"   # JSON-RPC port
@@ -15,20 +16,16 @@ services:
       - "8551:8551"   # Engine JSON-RPC port
     command: -c /home/nethermind/.nethermind/config.json
 
-  lighthouse:
-    image: sigp/lighthouse
-    container_name: lighthouse
-    command: lighthouse bn \
-      --network mainnet \
-      --http \
-      --http-address 0.0.0.0 \
-      --http-port 5052 \
-      --eth1-endpoints http://nethermind:8545
-    ports:
-      - "5052:5052"   # Beacon API port
+  teku:
+    image: edwards-custom-teku
+    container_name: teku
     volumes:
-      - lighthouse_data:/root/.lighthouse
+      - ./jwtsecret:/data/jwtsecret
+      - teku_data:/opt/teku/data
+    ports:
+      - "8008:8008"   # Prometheus metrics
+      - "5051:5051"   # REST API port
 
 volumes:
   nethermind_data:
-  lighthouse_data:
+  teku_data:
