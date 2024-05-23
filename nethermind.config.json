@@ -1,0 +1,70 @@
+{
+  "Init": {
+    "Network": "holesky"
+  },
+  "Logging": {
+    "File": {
+      "Name": "/data/logs/nethermind.log",
+      "Level": "info"
+    }
+  },
+  "Sync": {
+    "FastSync": true,
+    "PivotBlockHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "PivotBlockNumber": 0
+  },
+  "JsonRpc": {
+    "Enabled": true,
+    "Host": "0.0.0.0",
+    "Port": 8545,
+    "Modules": ["eth", "net", "web3", "personal", "debug", "txpool"],
+    "EngineHost": "0.0.0.0",
+    "EnginePort": 8551,
+    "EngineApis": ["engine"],
+    "WebSocketsEnabled": true,
+    "WebSocketsPort": 8546,
+    "WebSocketsHost": "0.0.0.0"
+  },
+  "Database": {
+    "Path": "/data",
+    "LogsRetentionPeriod": 7,
+    "PruningEnabled": true
+  },
+  "Ethereum": {
+    "GenesisBlockHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "ChainId": 1337
+  },
+  "Discovery": {
+    "Enabled": true,
+    "Port": 30303,
+    "ListenIP": "0.0.0.0"
+  },
+  "P2P": {
+    "Enabled": true,
+    "Port": 30303,
+    "ExternalIP": "0.0.0.0"
+  },
+  "Metrics": {
+    "Prometheus": {
+      "Enabled": true,
+      "Port": 9090
+    }
+  },
+  "HealthChecks": {
+    "Enabled": true,
+    "Prometheus": {
+      "Enabled": true,
+      "Port": 9090
+    }
+  },
+  "TxPool": {
+    "MaxSize": 2048
+  },
+  "JsonRpc": {
+    "Enabled": true,
+    "Host": "0.0.0.0",
+    "Port": 8545,
+    "EnginePort": 8551,
+    "JwtSecretFile": "/data/jwtsecret"
+  }
+}
