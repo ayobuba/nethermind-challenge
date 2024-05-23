@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  nethermind:
+    image: nethermind/nethermind
+    container_name: nethermind
+    volumes:
+      - ./nethermind.config.json:/home/nethermind/.nethermind/config.json
+      - nethermind_data:/data
+    ports:
+      - "8545:8545"   # JSON-RPC port
+      - "8546:8546"   # WebSocket port
+      - "30303:30303" # P2P port
+      - "9090:9090"   # Prometheus metrics
+      - "8551:8551"   # Engine JSON-RPC port
+    command: -c /home/nethermind/.nethermind/config.json
+
+volumes:
+  nethermind_data:
